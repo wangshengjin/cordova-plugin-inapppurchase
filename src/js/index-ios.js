@@ -105,4 +105,17 @@ inAppPurchase.restorePurchases = () => {
   });
 };
 
+/**
+ * 恢复购买数据
+ */
+inAppPurchase.recoveryPay = ()=> {
+  return new Promise((resolve, reject) => {
+    nativeCall('recoveryPay').then((res) => {
+      resolve({
+        receipt       : res.receipt
+      });
+    }).catch(reject);
+  });
+}
+
 module.exports = inAppPurchase;

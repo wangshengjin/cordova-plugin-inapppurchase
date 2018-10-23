@@ -15,6 +15,29 @@
 @implementation PaymentsPlugin
 
 - (void)pluginInitialize {
+    NSLog(@"pay inist");
+    
+}
+
+- (void)recoveryPay:(CDVInvokedUrlCommand *)command{
+    @try{
+        NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+        NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
+        NSString *encReceipt = [receiptData base64EncodedStringWithOptions:0];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"receipt": NILABLE(encReceipt)}];
+        [pluginResult setKeepCallbackAsBool:YES];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+    @catch (NSException *exception)
+    {
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+            messageAsDictionary:@{
+                          @"errorCode": NILABLE([NSNumber numberWithInteger:1139]),
+                          @"errorMessage": NILABLE(@"凭据获取失败")
+                          }];
+        [pluginResult setKeepCallbackAsBool:YES];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
 }
 
 - (void)getProducts:(CDVInvokedUrlCommand *)command {
@@ -71,6 +94,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     return;
   }
+
   [[RMStore defaultStore] addPayment:productId success:^(SKPaymentTransaction *transaction) {
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];

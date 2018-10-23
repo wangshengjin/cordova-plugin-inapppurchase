@@ -216,4 +216,8 @@ inAppPurchase.getReceipt = function () {
   return Promise.resolve('');
 };
 
+inAppPurchase.recoveryPay = function() {
+  return Promise.resolve('');
+}
+
 module.exports = inAppPurchase;

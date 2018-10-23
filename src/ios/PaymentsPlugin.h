@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
+#import <StoreKit/StoreKit.h>
+
 
 @interface PaymentsPlugin : CDVPlugin
 
@@ -16,5 +18,5 @@
 - (void)buy:(CDVInvokedUrlCommand *)command;
 - (void)restorePurchases:(CDVInvokedUrlCommand *)command;
 - (void)getReceipt:(CDVInvokedUrlCommand *)command;
-
+- (void)recoveryPay:(CDVInvokedUrlCommand *)command;
 @end

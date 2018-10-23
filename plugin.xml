@@ -27,6 +27,8 @@
       </feature>
     </config-file>
 
+    <header-file src="src/ios/AppDelegate+Payments.h" />
+    <source-file src="src/ios/AppDelegate+Payments.m" />
     <header-file src="src/ios/RMStore.h" />
     <source-file src="src/ios/RMStore.m" />
     <header-file src="src/ios/PaymentsPlugin.h" />

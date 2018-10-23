@@ -128,4 +128,8 @@ inAppPurchase.getReceipt = () => {
   return Promise.resolve('');
 };
 
+inAppPurchase.recoveryPay = ()=> {
+  return Promise.resolve('');
+}
+
 module.exports = inAppPurchase;
